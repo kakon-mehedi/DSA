@@ -13,7 +13,7 @@ function binarySearch(sortedArray, desiredNumber) {
   let endIndex = sortedArray.length;
 
   while (startIndex < endIndex) {
-    let middleNumberIndex = Math.floor((startIndex + endIndex) / 2); // 1
+    let middleNumberIndex = Math.floor((startIndex + endIndex) / 2);
 
     if (sortedArray[middleNumberIndex] === desiredNumber) {
       console.log("Number found at index no " + middleNumberIndex);
