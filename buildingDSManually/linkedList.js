@@ -82,7 +82,7 @@ class LinkedList {
 
 		if (isLastNode) {
 			this.tail = leadNode;
-            this.tail.next = null;
+			this.tail.next = null;
 			this.length--;
 		} else {
 			const currentNode = leadNode.next;
@@ -91,30 +91,49 @@ class LinkedList {
 		}
 	}
 
-    reverse(){
-        const currentLinkedList = this.printList();
-        let index = currentLinkedList.length - 1;
+	reverse() {
+		const currentLinkedList = this.printList();
+		let index = currentLinkedList.length - 1;
 
-        this.head = {
-            value: currentLinkedList[index],
-            next: null
-        }
+		this.head = {
+			value: currentLinkedList[index],
+			next: null,
+		};
 
-        this.tail = this.head; 
+		this.tail = this.head;
 
-        while (index !== 0){
-            const newNode = {
-                value: currentLinkedList[index-1],
-                next: null
-            }
+		while (index !== 0) {
+			const newNode = {
+				value: currentLinkedList[index - 1],
+				next: null,
+			};
 
-            this.tail.next = newNode;
-            this.tail = newNode;
-            index--;
-        }
+			this.tail.next = newNode;
+			this.tail = newNode;
+			index--;
+		}
 
-        return this;
-    }
+		return this;
+	}
+
+	reverseByAnotherMethod() {
+		if (!this.head.next) {
+			return this.head;
+		}
+
+		let first = this.head;
+		this.tail = this.head;
+		let second = first.next;
+		while (second) {
+			const temp = second.next;
+			second.next = first;
+			first = second;
+			second = temp;
+		}
+
+		this.head.next = null;
+		this.head = first;
+	}
 
 	findLeadNode(index) {
 		let count = 0;
@@ -122,7 +141,8 @@ class LinkedList {
 
 		if (currentNode === undefined || currentNode === null) return;
 
-		while (count !== index) {               // created a O(n)
+		while (count !== index) {
+			// created a O(n)
 			currentNode = currentNode.next;
 			count++;
 		}
@@ -150,10 +170,8 @@ myLinkedList.remove(20);
 myLinkedList.append(200);
 myLinkedList.insert(110, 500);
 
-
-
-
 console.log(myLinkedList.printList());
-console.log('<============ After Reversed ==========>')
-myLinkedList.reverse();
+console.log('<============ After Reversed ==========>');
+//myLinkedList.reverse();
+myLinkedList.reverseByAnotherMethod();
 console.log(myLinkedList.printList());
