@@ -91,6 +91,31 @@ class LinkedList {
 		}
 	}
 
+    reverse(){
+        const currentLinkedList = this.printList();
+        let index = currentLinkedList.length - 1;
+
+        this.head = {
+            value: currentLinkedList[index],
+            next: null
+        }
+
+        this.tail = this.head; 
+
+        while (index !== 0){
+            const newNode = {
+                value: currentLinkedList[index-1],
+                next: null
+            }
+
+            this.tail.next = newNode;
+            this.tail = newNode;
+            index--;
+        }
+
+        return this;
+    }
+
 	findLeadNode(index) {
 		let count = 0;
 		let currentNode = this.head;
@@ -128,4 +153,7 @@ myLinkedList.insert(110, 500);
 
 
 
+console.log(myLinkedList.printList());
+console.log('<============ After Reversed ==========>')
+myLinkedList.reverse();
 console.log(myLinkedList.printList());
